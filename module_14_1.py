@@ -14,13 +14,13 @@ cursor.execute('CREATE INDEX IF NOT EXISTS idx_email ON Users (email)')
 x = 1
 for i in range(10, 110, 10):
     cursor.execute('INSERT INTO Users(username, email,age,balance)VALUES(?,?,?,?)',
-                   (f'User{x}', 'example1@gmail.com', f'{i}', 1000))
+                   (f'User{x}', f'example{x}@gmail.com', f'{i}', 1000))
     x += 1
 for i in range(1, 11, 2):
     cursor.execute('UPDATE Users SET balance = ? WHERE id =?', (500, int(i)))
 
 for i in range(1, 11, 3):
-    cursor.execute('DELETE FROM Users WHERE id = ?', (f'{i}',))
+    cursor.execute('DELETE FROM Users WHERE id = ?', int(i),))
 
 cursor.execute('DELETE FROM Users WHERE id = ?', (6,))
 cursor.execute('SELECT * FROM Users WHERE age != ?', (60,))
